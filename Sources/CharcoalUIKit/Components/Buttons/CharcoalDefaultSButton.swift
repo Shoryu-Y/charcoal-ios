@@ -42,12 +42,7 @@ public class CharcoalDefaultSButton: UIButton, CharcoalButton {
 
     private func setupStyle() {
         if #available(iOS 15, *) {
-            configuration = generateUIButtonConfiguration(
-                textColor: CharcoalAsset.ColorPaletteGenerated.text2.color,
-                enabledBackgroundColor: CharcoalAsset.ColorPaletteGenerated.surface3.color,
-                pressedOverlayColor: CharcoalAsset.ColorPaletteGenerated.surface10.color,
-                size: .small
-            )
+            configuration = generateCharcoalButtonConfiguration(token: .default, size: .small)
         } else {
             setupButtonStyle(
                 textColor: CharcoalAsset.ColorPaletteGenerated.text2.color,
