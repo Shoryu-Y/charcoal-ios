@@ -42,7 +42,10 @@ let package = Package(
         ),
         .target(
             name: "CharcoalUIKit",
-            dependencies: ["CharcoalShared"]
+            dependencies: [
+                "CharcoalShared",
+                "CharcoalSwiftUI",
+            ]
         ),
         .testTarget(
             name: "charcoal-iosUIKitTests",

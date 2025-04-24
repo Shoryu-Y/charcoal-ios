@@ -73,7 +73,7 @@ struct CharcoalModalView<ModalContent: View, ActionContent: View>: View {
     }
 
     var body: some View {
-        return GeometryReader { proxy in
+        GeometryReader { proxy in
             ZStack(alignment: style.alignment, content: {
                 Rectangle()
                     .foregroundColor(Color.black.opacity(0.6))
@@ -86,27 +86,14 @@ struct CharcoalModalView<ModalContent: View, ActionContent: View>: View {
                         }
                     }
 
-                // Modal Content
-                VStack(spacing: 0) {
-                    if let title = title {
-                        Text(title).charcoalTypography20Bold(isSingleLine: true)
-                            .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
-                    }
-
-                    modalContent
-
-                    if let actions = actions {
-                        VStack {
-                            actions
-                        }
-                        .padding(EdgeInsets(top: 20, leading: 20, bottom: style == .center ? 20 : indicatorInset, trailing: 20))
-                        .onAppear {
-                            indicatorInset = max(proxy.safeAreaInsets.bottom, 30)
-                        }
-                    }
-                }
-                .frame(minWidth: 280, maxWidth: maxWidth)
-                .background(Rectangle().cornerRadius(32, corners: style.roundedCorners).foregroundStyle(charcoalColor: .surface1))
+                CharcoalModalBody(
+                    title: title,
+                    style: style,
+                    maxWidth: maxWidth,
+                    bottomSafeAreaInset: proxy.safeAreaInsets.bottom,
+                    actions: { actions },
+                    modalContent: { modalContent }
+                )
                 .opacity(modalOpacity)
                 .padding(style.padding)
                 .offset(modalOffset)
@@ -245,7 +232,6 @@ public extension View {
                     }).charcoalDefaultButton(size: .medium)
                 }
             ) {
-                NavigationView {
                     VStack(spacing: 10) {
                         Text("Hello This is a center dialog from Charcoal")
                             .charcoalTypography16Regular()
@@ -255,7 +241,6 @@ public extension View {
                     }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                         .navigationTitle("SwiftUI")
                         .navigationBarTitleDisplayMode(.inline)
-                }
             }
         }
     }
