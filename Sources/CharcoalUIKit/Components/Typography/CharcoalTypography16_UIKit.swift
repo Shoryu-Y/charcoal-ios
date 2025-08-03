@@ -37,8 +37,8 @@ public class CharcoalTypography16: CharcoalTypographyLabel {
 #Preview {
     let typography = CharcoalTypography16()
     typography.text = "Text Text Text Text Text Text Text Text Text Text Text Text Text Text"
-    typography.numberOfLines = 0
     typography.isBold = true
+    typography.numberOfLines = 0
     typography.textAlignment = .center
     return typography
 }
