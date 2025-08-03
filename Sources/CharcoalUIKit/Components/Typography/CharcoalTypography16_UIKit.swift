@@ -35,10 +35,10 @@ public class CharcoalTypography16: CharcoalTypographyLabel {
 // 文字は中央揃いになるが、lineHeightが期待通りでない
 @available(iOS 17.0, *)
 #Preview {
-    let label = UILabel()
-    label.text = "Text Text Text Text Text Text Text Text Text Text Text Text Text Text"
-    label.font = .boldSystemFont(ofSize: 16)
-    label.textAlignment = .center
-    label.numberOfLines = 0
-    return label
+    let typography = CharcoalTypography16()
+    typography.text = "Text Text Text Text Text Text Text Text Text Text Text Text Text Text"
+    typography.numberOfLines = 0
+    typography.isBold = true
+    typography.textAlignment = .center
+    return typography
 }
